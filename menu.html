@@ -15,7 +15,7 @@
       .then(function (r) { return r.json(); })
       .then(function (j) {
         if (!j.ok) throw new Error(j.error || 'Algo salió mal. Intenta de nuevo.');
-        if (fn === 'datosPublicos' && j.data) j.data.url = location.origin + '/';
+        if (fn === 'datosPublicos' && j.data) j.data.url = location.origin + '/agenda';
         ok && ok(j.data);
       })
       .catch(function (e) { no && no(e && e.message ? e : new Error('No hay conexión. Revisa tu internet e intenta de nuevo.')); });
