@@ -250,6 +250,7 @@
         }
         lab.classList.toggle('on', cb.checked);
         elegidos = Array.prototype.slice.call(cont.querySelectorAll('input:checked')).map(function (x) { return x.value; });
+        if (elegidos.length && window.mgEvento) mgEvento('servicio');
         hora = null;
         if (fecha) cargarHoras();
         pintarBarra();
@@ -271,7 +272,7 @@
       b.addEventListener('click', function () {
         Array.prototype.forEach.call(dias.children, function (c) { c.classList.remove('on'); });
         b.classList.add('on');
-        fecha = x.fecha; hora = null;
+        fecha = x.fecha; hora = null; if (window.mgEvento) mgEvento('dia');
         cargarHoras(); pintarBarra();
       });
       dias.appendChild(b);
@@ -338,7 +339,7 @@
         b.addEventListener('click', function () {
           Array.prototype.forEach.call(grid.children, function (c) { c.classList.remove('on'); });
           b.classList.add('on');
-          hora = h;
+          hora = h; if (window.mgEvento) mgEvento('horario');
           $('paso4').classList.remove('oculto');
           pintarBarra();
           setTimeout(function () { $('paso4').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
@@ -408,6 +409,7 @@
   }
 
   function confirmar(c) {
+    if (window.mgEvento) mgEvento('reserva');
     $('flujo').classList.add('oculto');
     $('barra').classList.add('oculto');
     var box = $('listo');
@@ -471,5 +473,6 @@
     window.scrollTo(0, 0);
   }
 </script>
+<script src="/track.js" defer></script>
 </body>
 </html>
