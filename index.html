@@ -75,10 +75,10 @@
       <h3>Tienda en línea</h3>
       <p id="txtTienda">Productos Mo' Glam para consentir tu piel en casa.</p>
     </a>
-    <a class="card sec" href="/galeria">
-      <span class="pill">Próximamente</span>
+    <a class="card sec" href="/galeria" id="cardGal">
+      <span class="pill" id="pillGal">Próximamente</span>
       <h3>Galería</h3>
-      <p>Muy pronto verás aquí nuestros trabajos para inspirarte.</p>
+      <p id="txtGal">Muy pronto verás aquí nuestros trabajos para inspirarte.</p>
     </a>
     <a class="card sec" href="/cursos">
       <span class="pill">Próximamente</span>
@@ -125,6 +125,14 @@ fetch("https://script.google.com/macros/s/AKfycbyOj2Dwt9iSgLBEh7tc0ou-jjd3Xd24gu
     p.style.background = 'var(--oro)'; p.style.color = 'var(--gold-ink)'; p.style.borderColor = 'transparent';
     document.getElementById('cardTienda').style.borderColor = '#5a4535';
     document.getElementById('txtTienda').textContent = 'Exfoliantes, mascarillas, body butter y sales para consentir tu piel en casa. Entrega en Mérida.';
+  }).catch(function () {});
+fetch("https://script.google.com/macros/s/AKfycbyOj2Dwt9iSgLBEh7tc0ou-jjd3Xd24gurcXprvk64Iy-sLNKv1t5maGV9YVLvRtbUmBQ/exec", { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit', body: JSON.stringify({ fn: 'galeria', args: [] }) })
+  .then(function (r) { return r.json(); }).then(function (j) {
+    if (!(j && j.ok && j.data && j.data.conectada && j.data.items && j.data.items.length)) return;
+    var p = document.getElementById('pillGal'); p.textContent = 'Nuevo';
+    p.style.background = 'var(--oro)'; p.style.color = 'var(--gold-ink)'; p.style.borderColor = 'transparent';
+    document.getElementById('cardGal').style.borderColor = '#5a4535';
+    document.getElementById('txtGal').textContent = 'Mira nuestros trabajos más recientes de uñas, pies y pestañas para inspirarte.';
   }).catch(function () {});
 </script>
 <script src="/track.js" defer></script>
