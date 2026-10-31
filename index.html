@@ -70,10 +70,10 @@
   </section>
 
   <section class="secciones" aria-label="Más de Mo' Glam">
-    <a class="card sec" href="/tienda" style="border-color:#5a4535">
-      <span class="pill" style="background:var(--oro);color:var(--gold-ink);border-color:transparent">Nuevo</span>
+    <a class="card sec" href="/tienda" id="cardTienda">
+      <span class="pill" id="pillTienda">Próximamente</span>
       <h3>Tienda en línea</h3>
-      <p>Exfoliantes, mascarillas, body butter y sales para consentir tu piel en casa. Entrega en Mérida.</p>
+      <p id="txtTienda">Productos Mo' Glam para consentir tu piel en casa.</p>
     </a>
     <a class="card sec" href="/galeria">
       <span class="pill">Próximamente</span>
@@ -117,6 +117,16 @@
     <span>© 2026 Mo' Glam · Mérida, Yucatán</span>
   </footer>
 </div>
+<script>
+fetch("https://script.google.com/macros/s/AKfycbyOj2Dwt9iSgLBEh7tc0ou-jjd3Xd24gurcXprvk64Iy-sLNKv1t5maGV9YVLvRtbUmBQ/exec", { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit', body: JSON.stringify({ fn: 'estadoTienda', args: [] }) })
+  .then(function (r) { return r.json(); }).then(function (j) {
+    if (!(j && j.ok && j.data && j.data.activa)) return;
+    var p = document.getElementById('pillTienda'); p.textContent = 'Nuevo';
+    p.style.background = 'var(--oro)'; p.style.color = 'var(--gold-ink)'; p.style.borderColor = 'transparent';
+    document.getElementById('cardTienda').style.borderColor = '#5a4535';
+    document.getElementById('txtTienda').textContent = 'Exfoliantes, mascarillas, body butter y sales para consentir tu piel en casa. Entrega en Mérida.';
+  }).catch(function () {});
+</script>
 <script src="/track.js" defer></script>
 </body>
 </html>

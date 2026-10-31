@@ -60,6 +60,10 @@
 .nota{font-size:13px;color:var(--muted);margin:0}
 .vacio{text-align:center;color:var(--muted);padding:24px}
 .oculto{display:none!important}
+.prox{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:44px 22px}
+.prox p{margin:0;max-width:42ch;color:#d9cbbb;font-size:17px}
+.prox .cta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:6px}
+.cargando{text-align:center;color:var(--muted);padding:40px 0}
 body.con-barra .wrap{padding-bottom:110px}
 @media (max-width:480px){.grid{grid-template-columns:1fr 1fr;gap:10px}.prod .cuerpo{padding:12px;gap:6px}.prod h3{font-size:19px}.prod .desc{font-size:13px}.prod .precio{font-size:18px}.fila{flex-direction:column;align-items:stretch;gap:8px}.cant{justify-content:space-between}.prod .btn{font-size:14px}}
 </style>
@@ -71,6 +75,15 @@ body.con-barra .wrap{padding-bottom:110px}
     <div class="eyebrow">Tienda</div>
   </header>
 
+  <div class="cargando" id="cargando">Cargando tienda…</div>
+  <section class="card prox oculto" id="pausa" aria-labelledby="tp">
+    <span class="pill">Próximamente</span>
+    <h1 id="tp">Tienda en línea</h1>
+    <p>Muy pronto podrás comprar aquí nuestros productos Mo' Glam para consentir tu piel en casa: exfoliante, mascarilla, body butter y sales minerales.</p>
+    <div class="cta"><a class="btn fill" href="/agenda">Agenda tu cita</a><a class="btn line" href="/">Volver al inicio</a></div>
+  </section>
+
+  <div id="catalogo" class="oculto" style="display:flex;flex-direction:column;gap:36px">
   <section class="intro" aria-labelledby="t1">
     <h1 id="t1">Consiente tu piel en casa</h1>
     <p>Los mismos productos que usamos en tu manicure y pedicure. Arma tu pedido y te lo confirmamos por WhatsApp.</p>
@@ -80,6 +93,7 @@ body.con-barra .wrap{padding-bottom:110px}
   <section class="grid" id="grid" aria-label="Productos"></section>
 
   <p class="nota" style="text-align:center">Productos cosméticos de uso externo. Los aromas pueden variar según disponibilidad; te confirmamos por WhatsApp antes de cobrar.</p>
+  </div>
 
   <footer class="pie">
     <nav aria-label="Secciones">
@@ -126,6 +140,7 @@ body.con-barra .wrap{padding-bottom:110px}
 <script>
 (function () {
   var WA = '529991153647';
+  var ACTIVA = false;
   var ENVIO_MERIDA = 60, GRATIS_DESDE = 500;
   var A_EXF = ['Lavanda', 'Menta', 'Rosas', 'Mandarina', 'Sandía', 'Chocolate', 'Café', 'Frutos rojos', 'Maracuyá', 'Avena y miel'];
   var A_MASC = ['Lavanda', 'Maracuyá', 'Menta', 'Frutos rojos', 'Rosas', 'Chocolate', 'Naranja', 'Café'];
@@ -197,8 +212,8 @@ body.con-barra .wrap{padding-bottom:110px}
 
   function pintar() {
     var piezas = carro.reduce(function (a, l) { return a + l.n; }, 0), st = subtotal();
-    $('barra').classList.toggle('oculto', !piezas);
-    document.body.classList.toggle('con-barra', !!piezas);
+    $('barra').classList.toggle('oculto', !piezas || !ACTIVA);
+    document.body.classList.toggle('con-barra', !!piezas && ACTIVA);
     $('bTotal').textContent = dinero(st);
     $('bCant').textContent = piezas + (piezas === 1 ? ' producto' : ' productos');
     var L = $('lineas'); L.textContent = '';
@@ -258,6 +273,23 @@ body.con-barra .wrap{padding-bottom:110px}
   $('carro').addEventListener('click', function (e) { if (e.target === $('carro')) cerrar(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrar(); });
   pintar();
+
+  // ¿La tienda está activa o en pausa? (se cambia desde el panel → Ajustes)
+  function mostrar(activa) {
+    ACTIVA = activa;
+    $('cargando').classList.add('oculto');
+    $('catalogo').classList.toggle('oculto', !activa);
+    $('pausa').classList.toggle('oculto', activa);
+    if (!activa) cerrar();
+    pintar();
+  }
+  var listo = false;
+  var t = setTimeout(function () { if (!listo) { listo = true; mostrar(true); } }, 7000);
+  fetch('https://script.google.com/macros/s/AKfycbyOj2Dwt9iSgLBEh7tc0ou-jjd3Xd24gurcXprvk64Iy-sLNKv1t5maGV9YVLvRtbUmBQ/exec', { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit',
+    body: JSON.stringify({ fn: 'estadoTienda', args: [] }) })
+    .then(function (r) { return r.json(); })
+    .then(function (j) { if (listo) return; listo = true; clearTimeout(t); mostrar(!(j && j.ok && j.data && j.data.activa === false)); })
+    .catch(function () { if (listo) return; listo = true; clearTimeout(t); mostrar(true); });
 })();
 </script>
 <script src="/track.js" defer></script>
