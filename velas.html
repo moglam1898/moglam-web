@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Velas de Navidad · Mo' Glam</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Velas decorativas de Navidad hechas a mano: árboles, renos, esferas y más. Precio de mayoreo desde 10 piezas. Pide por WhatsApp en Mérida.">
+<meta property="og:title" content="Velas de Navidad · Mo' Glam">
+<meta property="og:description" content="Velas decorativas hechas a mano. Mayoreo desde 10 piezas combinadas.">
+<meta property="og:image" content="https://moglam.com.mx/v-escena.jpg">
+<meta name="theme-color" content="#0d0407">
+<link rel="icon" href="/logo.jpg">
+<link rel="apple-touch-icon" href="/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/estilo.css">
+<style>
+.intro{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.intro p{margin:0;max-width:46ch;color:#d9cbbb}
+.envio{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:4px}
+.envio span{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:var(--card)}
+.envio span.oro{color:var(--gold-ink);background:var(--oro);border-color:transparent;font-weight:600}
+.grupo{display:flex;flex-direction:column;gap:14px}
+.grupo h2{text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.prod{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.prod img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;background:#1a0d10}
+.prod .cuerpo{display:flex;flex-direction:column;gap:8px;padding:14px 16px 16px;flex:1}
+.prod h3{font-size:23px}
+.precios{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:auto}
+.precios .men{font:600 21px var(--body);color:var(--ink)}
+.precios .may{font-size:13px;color:var(--gold)}
+.fila{display:flex;align-items:center;gap:10px}
+.cant{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.cant button{width:40px;height:42px;border:0;background:transparent;color:var(--ink);font:600 20px var(--body);cursor:pointer}
+.cant span{min-width:26px;text-align:center;font-weight:600}
+.prod .btn{flex:1;min-height:44px;padding:0 14px;font-size:15px;border:0;cursor:pointer}
+.set{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0;padding:0;overflow:hidden;border-color:#5a4535}
+.set img{width:100%;height:100%;min-height:240px;object-fit:cover;display:block}
+.set .cuerpo{display:flex;flex-direction:column;gap:10px;padding:22px}
+.set .grande{font:600 40px var(--body);line-height:1;color:var(--gold)}
+.set p{margin:0;color:var(--muted);font-size:14.5px}
+.set .btn{border:0;cursor:pointer;align-self:flex-start}
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(13,4,7,.94);border-top:1px solid var(--line);backdrop-filter:blur(8px);display:flex;align-items:center;gap:12px;justify-content:space-between}
+.barra b{font:600 18px var(--body)}
+.barra .muted{font-size:13px}
+.barra .btn{border:0;cursor:pointer;min-height:48px}
+.carro{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.6);display:flex;justify-content:center;align-items:flex-end}
+.carro .panel{width:100%;max-width:560px;max-height:92vh;overflow:auto;background:var(--bg);border:1px solid var(--line);border-radius:22px 22px 0 0;padding:20px max(16px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:14px}
+.carro .cab{display:flex;justify-content:space-between;align-items:center}
+.carro .cerrar{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;width:40px;height:40px;font-size:18px;cursor:pointer}
+.carro input:not([type=radio]),.carro select,.carro textarea{width:100%;min-height:44px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:#100709;color:var(--ink);font:15px var(--body)}
+.carro input:not([type=radio]):focus,.carro select:focus,.carro textarea:focus{outline:none;border-color:var(--gold)}
+.linea{display:flex;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:12px}
+.linea img{width:60px;height:60px;border-radius:12px;object-fit:cover;flex:none}
+.linea .info{flex:1;min-width:0}
+.linea .info div:first-child{font-weight:600}
+.linea .info .muted{font-size:13px}
+.lbl{font-size:13px;color:var(--muted);margin:0 0 6px}
+.opc{display:flex;flex-direction:column;gap:8px}
+.opc label{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:14px;cursor:pointer}
+.opc label:has(input:checked){border-color:var(--gold);background:rgba(214,178,94,.08)}
+.opc input{accent-color:#d6b25e;margin-top:3px;width:18px;height:18px;flex:none}
+.opc small{display:block;color:var(--muted)}
+.aviso{font-size:14px;padding:10px 12px;border-radius:12px;border:1px solid #5a4535;background:rgba(214,178,94,.08);color:var(--ink)}
+.tot{display:grid;grid-template-columns:1fr auto;gap:4px;font-size:15px}
+.tot .grande{font:600 22px var(--body);color:var(--gold)}
+.nota{font-size:13px;color:var(--muted);margin:0}
+.vacio{text-align:center;color:var(--muted);padding:24px}
+.oculto{display:none!important}
+body.con-barra .wrap{padding-bottom:110px}
+@media (max-width:560px){.set{grid-template-columns:1fr}.set img{min-height:0;aspect-ratio:1/1}}
+@media (max-width:480px){.grid{grid-template-columns:1fr 1fr;gap:10px}.prod .cuerpo{padding:12px;gap:6px}.prod h3{font-size:19px}.precios .men{font-size:18px}.precios .may{font-size:12px}.fila{flex-direction:column;align-items:stretch;gap:8px}.cant{justify-content:space-between}.prod .btn{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/" aria-label="Ir al inicio"><img src="/logo.jpg" alt="Mo' Glam" width="120" height="122" style="width:120px"></a>
+    <div class="eyebrow">Velas</div>
+  </header>
+
+  <section class="intro" aria-labelledby="t1">
+    <span class="pill">Temporada 2026</span>
+    <h1 id="t1">Velas de Navidad</h1>
+    <p>Velas decorativas de parafina hechas a mano, con empaque en tul y tarjeta. Ideales para regalar o decorar tu mesa. Arma tu pedido y te lo confirmamos por WhatsApp.</p>
+    <div class="envio"><span class="oro">Mayoreo desde 10 piezas combinadas</span><span>Recoge en el salón gratis</span><span>Envío en Mérida</span></div>
+  </section>
+
+  <section class="card set" aria-labelledby="tset">
+    <img src="/v-escena.jpg" alt="Vela Escena invernal" width="800" height="800" loading="lazy">
+    <div class="cuerpo">
+      <span class="pill" style="align-self:flex-start">Set navideño</span>
+      <h2 id="tset">9 velas clásicas</h2>
+      <div class="grande">$990</div>
+      <p>Pirámide, Árbol, Bubbles, Esfera, Esfera de gajos, Escena invernal, Reno, Muñeco de nieve y Santa cupcake. Por separado suman $1,345.</p>
+      <button class="btn fill" type="button" id="addSet">Agregar set</button>
+    </div>
+  </section>
+
+  <section class="grupo" aria-labelledby="tfig">
+    <h2 id="tfig">Figuras</h2>
+    <div class="grid" id="gFig"></div>
+  </section>
+
+  <section class="grupo" aria-labelledby="tfor">
+    <h2 id="tfor">Esferas y formas</h2>
+    <div class="grid" id="gFor"></div>
+  </section>
+
+  <p class="nota" style="text-align:center">Vela decorativa. No la dejes encendida sin vigilancia, mantenla lejos de niños, mascotas y cortinas, y enciéndela sobre un plato resistente al calor.</p>
+
+  <footer class="pie">
+    <nav aria-label="Secciones">
+      <a href="/">Inicio</a><a href="/agenda">Agenda</a><a href="/menu">Menú</a><a href="/tienda">Tienda</a><a href="/velas">Velas</a><a href="/galeria">Galería</a><a href="/cursos">Cursos y talleres</a><a href="/empleos">Bolsa de trabajo</a><a href="/privacidad">Aviso de privacidad</a>
+    </nav>
+    <span>© 2026 Mo' Glam · Mérida, Yucatán</span>
+  </footer>
+</div>
+
+<div class="barra oculto" id="barra">
+  <div><b id="bTotal">$0</b><div class="muted" id="bCant">0 velas</div></div>
+  <button class="btn fill" type="button" id="verPedido">Ver mi pedido</button>
+</div>
+
+<div class="carro oculto" id="carro" role="dialog" aria-modal="true" aria-labelledby="tCarro">
+  <div class="panel">
+    <div class="cab"><h2 id="tCarro" style="font-size:28px">Tu pedido</h2><button class="cerrar" type="button" id="cerrar" aria-label="Cerrar">✕</button></div>
+    <div id="lineas"></div>
+    <div class="aviso" id="avisoMay"></div>
+    <div>
+      <p class="lbl">¿Cómo lo recibes?</p>
+      <div class="opc" id="entrega">
+        <label><input type="radio" name="ent" value="salon" checked><span>Recoger en el salón<small>Calle 23 #239, Montecarlo, Mérida · sin costo</small></span></label>
+        <label><input type="radio" name="ent" value="merida"><span>Envío en Mérida<small>Te confirmamos el costo por WhatsApp</small></span></label>
+      </div>
+    </div>
+    <div><p class="lbl">Tu nombre</p><input id="nombre" maxlength="60" autocomplete="name" placeholder="Nombre y apellido"></div>
+    <div id="dirBox" class="oculto"><p class="lbl">Dirección de entrega</p><textarea id="dir" rows="2" maxlength="200" autocomplete="street-address" placeholder="Calle, número, colonia"></textarea></div>
+    <div>
+      <p class="lbl">Forma de pago</p>
+      <select id="pago">
+        <option>Link de pago (tarjeta)</option>
+        <option>Transferencia</option>
+        <option>Efectivo en el salón</option>
+      </select>
+    </div>
+    <div><p class="lbl">Nota (opcional)</p><textarea id="nota" rows="2" maxlength="200" placeholder="Fecha en que las necesitas, texto para la tarjeta, etc."></textarea></div>
+    <div class="tot" id="tot"></div>
+    <a class="btn fill" id="enviar" href="#" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
+    <p class="nota">Se abrirá WhatsApp con tu pedido listo para enviar. Te confirmamos disponibilidad, fecha de entrega y datos de pago. Consulta nuestro <a href="/privacidad">aviso de privacidad</a>.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var WA = '529991153647';
+  var MAYOREO_DESDE = 10;
+  var SET = { id: 'set', nombre: 'Set navideño (9 velas clásicas)', precio: 990, img: '/v-escena.jpg' };
+  var P = [
+    { id: 'arbol', g: 'gFig', nombre: 'Árbol', men: 50, may: 40 },
+    { id: 'arbol-estrella', g: 'gFig', nombre: 'Árbol con estrella', men: 65, may: 50 },
+    { id: 'copo', g: 'gFig', nombre: 'Copo de nieve', men: 65, may: 50 },
+    { id: 'galleta', g: 'gFig', nombre: 'Galleta de jengibre', men: 65, may: 50 },
+    { id: 'angel', g: 'gFig', nombre: 'Ángel', men: 80, may: 60 },
+    { id: 'muneco', g: 'gFig', nombre: 'Muñeco de nieve', men: 110, may: 80 },
+    { id: 'reno-silueta', g: 'gFig', nombre: 'Reno silueta', men: 140, may: 105 },
+    { id: 'reno', g: 'gFig', nombre: 'Reno', men: 165, may: 125 },
+    { id: 'santa', g: 'gFig', nombre: 'Santa cupcake', men: 210, may: 160 },
+    { id: 'piramide', g: 'gFor', nombre: 'Pirámide', men: 105, may: 75 },
+    { id: 'torre', g: 'gFor', nombre: 'Torre geométrica', men: 110, may: 85 },
+    { id: 'bola', g: 'gFor', nombre: 'Bola de burbujas', men: 120, may: 90 },
+    { id: 'columna', g: 'gFor', nombre: 'Columna de burbujas', men: 135, may: 100 },
+    { id: 'bubbles', g: 'gFor', nombre: 'Bubbles', men: 150, may: 110 },
+    { id: 'gajos', g: 'gFor', nombre: 'Esfera de gajos', men: 180, may: 135 },
+    { id: 'escena', g: 'gFor', nombre: 'Escena invernal', men: 180, may: 135 },
+    { id: 'esfera', g: 'gFor', nombre: 'Esfera', men: 195, may: 145 }
+  ];
+  P.forEach(function (p) { p.img = '/v-' + p.id + '.jpg'; });
+  var $ = function (id) { return document.getElementById(id); };
+  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function dinero(n) { return '$' + Number(n || 0).toLocaleString('es-MX'); }
+  function prod(id) { return id === 'set' ? SET : P.filter(function (p) { return p.id === id; })[0]; }
+  var carro = [];
+  try { carro = JSON.parse(localStorage.getItem('mg_velas') || '[]') || []; } catch (e) { carro = []; }
+  carro = carro.filter(function (l) { return !!prod(l.id) && l.n > 0; });
+  function guardar() { try { localStorage.setItem('mg_velas', JSON.stringify(carro)); } catch (e) {} }
+  function agregar(id, n) {
+    var l = carro.filter(function (x) { return x.id === id; })[0];
+    if (l) l.n = Math.min(200, l.n + n); else carro.push({ id: id, n: n });
+    guardar(); pintar();
+  }
+
+  P.forEach(function (p) {
+    var c = el('article', 'prod');
+    var img = el('img'); img.src = p.img; img.alt = 'Vela ' + p.nombre; img.loading = 'lazy'; img.width = 800; img.height = 800;
+    c.appendChild(img);
+    var b = el('div', 'cuerpo');
+    b.appendChild(el('h3', null, p.nombre));
+    var pr = el('div', 'precios');
+    pr.appendChild(el('span', 'men', dinero(p.men)));
+    pr.appendChild(el('span', 'may', dinero(p.may) + ' en mayoreo'));
+    b.appendChild(pr);
+    var fila = el('div', 'fila');
+    var n = 1, cant = el('div', 'cant'), menos = el('button', null, '−'), num = el('span', null, '1'), mas = el('button', null, '+');
+    menos.type = mas.type = 'button'; menos.setAttribute('aria-label', 'Menos'); mas.setAttribute('aria-label', 'Más');
+    menos.onclick = function () { n = Math.max(1, n - 1); num.textContent = n; };
+    mas.onclick = function () { n = Math.min(100, n + 1); num.textContent = n; };
+    cant.appendChild(menos); cant.appendChild(num); cant.appendChild(mas);
+    var add = el('button', 'btn fill', 'Agregar'); add.type = 'button';
+    add.onclick = function () {
+      agregar(p.id, n); n = 1; num.textContent = '1';
+      add.textContent = '✓ Agregado'; setTimeout(function () { add.textContent = 'Agregar'; }, 1400);
+    };
+    fila.appendChild(cant); fila.appendChild(add); b.appendChild(fila);
+    c.appendChild(b); $(p.g).appendChild(c);
+  });
+  $('addSet').onclick = function () {
+    agregar('set', 1); var b = $('addSet');
+    b.textContent = '✓ Agregado'; setTimeout(function () { b.textContent = 'Agregar set'; }, 1400);
+  };
+
+  function sueltas() { return carro.reduce(function (a, l) { return a + (l.id === 'set' ? 0 : l.n); }, 0); }
+  function esMayoreo() { return sueltas() >= MAYOREO_DESDE; }
+  function precio(l) { var p = prod(l.id); return l.id === 'set' ? p.precio : (esMayoreo() ? p.may : p.men); }
+  function total() { return carro.reduce(function (a, l) { return a + precio(l) * l.n; }, 0); }
+  function entrega() { var r = document.querySelector('input[name=ent]:checked'); return r ? r.value : 'salon'; }
+
+  function pintar() {
+    var piezas = carro.reduce(function (a, l) { return a + l.n; }, 0), st = total(), s = sueltas();
+    $('barra').classList.toggle('oculto', !piezas);
+    document.body.classList.toggle('con-barra', !!piezas);
+    $('bTotal').textContent = dinero(st);
+    $('bCant').textContent = piezas + (piezas === 1 ? ' artículo' : ' artículos') + (esMayoreo() ? ' · precio de mayoreo' : '');
+    var L = $('lineas'); L.textContent = '';
+    if (!carro.length) L.appendChild(el('div', 'vacio', 'Tu pedido está vacío.'));
+    carro.forEach(function (l, i) {
+      var p = prod(l.id), r = el('div', 'linea');
+      var im = el('img'); im.src = p.img; im.alt = ''; r.appendChild(im);
+      var inf = el('div', 'info');
+      inf.appendChild(el('div', null, p.nombre));
+      inf.appendChild(el('div', 'muted', dinero(precio(l)) + ' c/u'));
+      r.appendChild(inf);
+      var cant = el('div', 'cant'), m = el('button', null, '−'), sp = el('span', null, String(l.n)), x = el('button', null, '+');
+      m.type = x.type = 'button'; m.setAttribute('aria-label', 'Menos'); x.setAttribute('aria-label', 'Más');
+      m.onclick = function () { l.n--; if (l.n <= 0) carro.splice(i, 1); guardar(); pintar(); };
+      x.onclick = function () { l.n = Math.min(200, l.n + 1); guardar(); pintar(); };
+      cant.appendChild(m); cant.appendChild(sp); cant.appendChild(x); r.appendChild(cant);
+      L.appendChild(r);
+    });
+    var av = $('avisoMay');
+    av.classList.toggle('oculto', !s);
+    av.textContent = esMayoreo() ? '✓ Ya tienes precio de mayoreo en tus velas sueltas.' : 'Agrega ' + (MAYOREO_DESDE - s) + (MAYOREO_DESDE - s === 1 ? ' vela más' : ' velas más') + ' (pueden ser de distintos modelos) y todas pasan a precio de mayoreo.';
+    var e = entrega();
+    $('dirBox').classList.toggle('oculto', e === 'salon');
+    var T = $('tot'); T.textContent = '';
+    function fila(a, b, cls) { T.appendChild(el('span', cls, a)); T.appendChild(el('span', cls, b)); }
+    fila('Envío', e === 'salon' ? 'Gratis' : 'Por confirmar');
+    fila('Total', dinero(st) + (e === 'merida' ? ' + envío' : ''), 'grande');
+    actualizarLink();
+  }
+  function mensaje() {
+    var t = ['Hola Mo’ Glam, quiero pedir estas velas:', ''];
+    carro.forEach(function (l) { var p = prod(l.id); t.push('• ' + l.n + ' × ' + p.nombre + ' — ' + dinero(precio(l) * l.n)); });
+    if (esMayoreo()) t.push('(Precio de mayoreo: ' + sueltas() + ' velas sueltas)');
+    var e = entrega();
+    t.push('', 'Total: ' + dinero(total()) + (e === 'merida' ? ' + envío' : ''));
+    t.push('Entrega: ' + (e === 'salon' ? 'Recojo en el salón' : 'Envío en Mérida (cotizar)'));
+    var n = $('nombre').value.trim(); if (n) t.push('Nombre: ' + n);
+    var d = $('dir').value.trim(); if (d && e !== 'salon') t.push('Dirección: ' + d);
+    t.push('Pago: ' + $('pago').value);
+    var no = $('nota').value.trim(); if (no) t.push('Nota: ' + no);
+    return t.join('\n');
+  }
+  function actualizarLink() { $('enviar').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(mensaje()); }
+  $('enviar').addEventListener('click', function (ev) {
+    if (!carro.length) { ev.preventDefault(); return; }
+    if (!$('nombre').value.trim()) { ev.preventDefault(); $('nombre').focus(); $('nombre').placeholder = 'Escribe tu nombre para continuar'; return; }
+    if (entrega() !== 'salon' && !$('dir').value.trim()) { ev.preventDefault(); $('dir').focus(); return; }
+    actualizarLink();
+  });
+  ['nombre', 'dir', 'pago', 'nota'].forEach(function (k) { $(k).addEventListener('input', actualizarLink); $(k).addEventListener('change', actualizarLink); });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name=ent]'), function (r) { r.addEventListener('change', pintar); });
+  function abrir() { $('carro').classList.remove('oculto'); document.body.style.overflow = 'hidden'; }
+  function cerrar() { $('carro').classList.add('oculto'); document.body.style.overflow = ''; }
+  $('verPedido').onclick = abrir; $('cerrar').onclick = cerrar;
+  $('carro').addEventListener('click', function (e) { if (e.target === $('carro')) cerrar(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrar(); });
+  pintar();
+})();
+</script>
+<script src="/track.js" defer></script>
+</body>
+</html>
