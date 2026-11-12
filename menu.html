@@ -91,6 +91,14 @@ footer .datos b{color:var(--ink);font-weight:500}
   h2{font-size:30px}
 }
 .cargando{color:var(--muted);text-align:center;padding:30px 0}
+.fotos{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(132px,1fr);gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:4px 0 10px;padding-bottom:4px;scrollbar-width:none}
+.fotos::-webkit-scrollbar{display:none}
+.oculto{display:none!important}
+.fotos a{position:relative;display:block;aspect-ratio:4/5;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--card);scroll-snap-align:start}
+.fotos img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.fotos a:hover img{transform:scale(1.04)}
+.fotos .mas{display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;color:var(--gold);font:600 14px var(--body);text-decoration:none;background:var(--card)}
+@media (prefers-reduced-motion:reduce){.fotos img{transition:none}}
 @media (prefers-reduced-motion:reduce){.btn{transition:none}}
 </style>
 </head>
@@ -198,6 +206,7 @@ footer .datos b{color:var(--ink);font-weight:500}
       var sec = el('section');
       var h = el('h2', null, cat); if (SUB[cat]) h.appendChild(el('small', null, SUB[cat]));
       sec.appendChild(h);
+      if (FOTO_CAT[cat]) { var f = el('div', 'fotos oculto'); f.dataset.cat = FOTO_CAT[cat]; f.setAttribute('aria-label', 'Trabajos de ' + cat); sec.appendChild(f); }
       if (cat === 'Extras') {
         sec.appendChild(el('p', 'desc', 'Dale un toque especial a tu diseño. Pregunta por el costo de cada uno.'));
         var ch = el('div', 'extras'); EXTRAS.forEach(function (x) { ch.appendChild(el('span', null, x)); }); sec.appendChild(ch);
@@ -205,6 +214,37 @@ footer .datos b{color:var(--ink);font-weight:500}
       agrupar(porCat[cat] || []).forEach(function (s) { sec.appendChild(item(s)); });
       cont.appendChild(sec);
     });
+    cargarFotos();
+  }
+
+  // Fotos de la galería (Instagram) arriba de cada sección: Manos, Pies, Pestañas.
+  var FOTO_CAT = { 'Manos': 'Manos', 'Pies': 'Pies', 'Pestañas y cejas': 'Pestañas' };
+  var API_GAL = 'https://script.google.com/macros/s/AKfycbyOj2Dwt9iSgLBEh7tc0ou-jjd3Xd24gurcXprvk64Iy-sLNKv1t5maGV9YVLvRtbUmBQ/exec';
+  function cargarFotos() {
+    fetch(API_GAL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit', body: JSON.stringify({ fn: 'galeria', args: [] }) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        var d = j && j.ok && j.data; if (!d || !d.conectada) return;
+        var items = (d.items || []).filter(function (m) {
+          return /^https:\/\//.test(m.img) && /^https:\/\/(www\.)?instagram\.com\//.test(m.url) && !/higien|esteril/i.test(m.txt || '');
+        });
+        Array.prototype.forEach.call(document.querySelectorAll('.fotos'), function (f) {
+          var cat = f.dataset.cat;
+          var mias = items.filter(function (m) { return m.cat === cat; }).slice(0, 6);
+          if (!mias.length) return;
+          mias.forEach(function (m) {
+            var a = el('a'); a.href = m.url; a.target = '_blank'; a.rel = 'noopener';
+            a.setAttribute('aria-label', m.txt ? 'Ver en Instagram: ' + m.txt : 'Ver en Instagram');
+            var im = new Image(); im.src = m.img; im.alt = m.txt || ('Trabajo de ' + cat); im.loading = 'lazy'; im.decoding = 'async'; im.referrerPolicy = 'no-referrer';
+            im.onerror = function () { a.remove(); };
+            a.appendChild(im); f.appendChild(a);
+          });
+          var mas = el('a', 'mas', 'Ver más trabajos de ' + cat.toLowerCase() + ' →'); mas.href = '/galeria#' + cat.toLowerCase();
+          f.appendChild(mas);
+          f.classList.remove('oculto');
+        });
+      })
+      .catch(function () {});
   }
 </script>
 <script src="/track.js" defer></script>
