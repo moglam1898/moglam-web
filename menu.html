@@ -91,6 +91,17 @@ footer .datos b{color:var(--ink);font-weight:500}
   h2{font-size:30px}
 }
 .cargando{color:var(--muted);text-align:center;padding:30px 0}
+/* Pantallas grandes (iPad acostado, computadora): el menú se abre a dos columnas y usa más ancho */
+.lista{display:flex;flex-direction:column}
+.notas{display:flex;flex-direction:column;gap:44px}
+.lista .item:first-child{border-top:1px solid var(--line)}
+@media (min-width:900px){
+  .wrap{max-width:1120px;padding-left:max(32px, env(safe-area-inset-left, 0px));padding-right:max(32px, env(safe-area-inset-right, 0px))}
+  .lista{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px}
+  .lista .item:nth-child(2){border-top:1px solid var(--line)}
+  .fotos{grid-auto-columns:minmax(160px,1fr)}
+  .notas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+}
 .fotos{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(132px,1fr);gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:4px 0 10px;padding-bottom:4px;scrollbar-width:none}
 .fotos::-webkit-scrollbar{display:none}
 .oculto{display:none!important}
@@ -116,6 +127,7 @@ footer .datos b{color:var(--ink);font-weight:500}
     <div class="cta" id="ctaTop"></div>
   </header>
   <div id="secciones"><div class="cargando">Cargando menú…</div></div>
+  <div class="notas">
   <div class="nota">
     <h3>Cortesía de la casa</h3>
     <p>Disfruta una bebida durante tu servicio: café, agua natural, agua mineral saborizada, refresco o Caribe Cooler (mayores de 18).</p>
@@ -123,6 +135,7 @@ footer .datos b{color:var(--ink);font-weight:500}
   <div class="nota">
     <h3>Antes de tu cita</h3>
     <p id="politica">Las clientas nuevas apartan su primera cita con un anticipo, que se descuenta del total el día de tu servicio. Para cancelar o cambiar tu cita, escríbenos por WhatsApp con anticipación. Los anticipos no son reembolsables en caso de cancelación.</p>
+  </div>
   </div>
   <footer>
     <div class="cta" id="ctaBottom"></div>
@@ -232,7 +245,7 @@ footer .datos b{color:var(--ink);font-weight:500}
         sec.appendChild(el('p', 'desc', 'Dale un toque especial a tu diseño. Pregunta por el costo de cada uno.'));
         var ch = el('div', 'extras'); EXTRAS.forEach(function (x) { ch.appendChild(el('span', null, x)); }); sec.appendChild(ch);
       }
-      agrupar(porCat[cat] || []).forEach(function (s) { sec.appendChild(item(s)); });
+      var lista = el('div', 'lista'); agrupar(porCat[cat] || []).forEach(function (s) { lista.appendChild(item(s)); }); sec.appendChild(lista);
       cont.appendChild(sec);
     });
     cargarFotos();
