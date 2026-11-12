@@ -25,6 +25,10 @@
 .esqueleto{aspect-ratio:1;border-radius:12px;background:linear-gradient(100deg,#160b0f 30%,#22141a 50%,#160b0f 70%);background-size:300% 100%;animation:brillo 1.4s infinite}
 @keyframes brillo{to{background-position:-150% 0}}
 .oculto{display:none!important}
+.filtros{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:22px}
+.filtros button{min-height:40px;padding:0 18px;border-radius:999px;border:1px solid var(--gold);background:transparent;color:var(--gold);font:600 14px var(--body);cursor:pointer}
+.filtros button[aria-pressed="true"]{background:var(--oro);color:var(--gold-ink);border-color:transparent}
+.filtros button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 @media (min-width:700px){.rejilla{gap:10px}}
 @media (prefers-reduced-motion:reduce){.esqueleto{animation:none}.rejilla img{transition:none}}
 </style>
@@ -46,7 +50,10 @@
       <p>Inspírate para tu próxima cita. Toca cualquier foto para verla en Instagram.</p>
       <div class="cta"><a class="btn fill" href="/agenda">Agenda tu cita</a><a class="btn line" id="seguir" href="https://www.instagram.com/mo.glam_/" target="_blank" rel="noopener">Síguenos en Instagram</a></div>
     </div>
-    <div class="rejilla" id="rejilla" style="margin-top:26px"></div>
+    <div class="filtros oculto" id="filtros" role="group" aria-label="Filtrar trabajos">
+      <button type="button" data-cat="" aria-pressed="true">Todos</button><button type="button" data-cat="Manos" aria-pressed="false">Manos</button><button type="button" data-cat="Pies" aria-pressed="false">Pies</button><button type="button" data-cat="Pestañas" aria-pressed="false">Pestañas</button>
+    </div>
+    <div class="rejilla" id="rejilla" style="margin-top:18px"></div>
   </section>
 
   <section id="pausa" class="card prox oculto" aria-labelledby="t1">
@@ -81,6 +88,7 @@
       if (!/^https:\/\/(www\.)?instagram\.com\//.test(m.url) || !/^https:\/\//.test(m.img)) return;
       var a = document.createElement('a');
       a.href = m.url; a.target = '_blank'; a.rel = 'noopener';
+      a.dataset.cat = m.cat || '';
       a.setAttribute('aria-label', m.txt ? 'Ver en Instagram: ' + m.txt : 'Ver publicación en Instagram');
       var im = new Image();
       im.src = m.img; im.alt = m.txt || "Trabajo de Mo' Glam"; im.loading = 'lazy'; im.decoding = 'async'; im.referrerPolicy = 'no-referrer';
@@ -91,6 +99,22 @@
     });
     if (!r.children.length) { $('pausa').classList.remove('oculto'); return; }
     $('galeria').classList.remove('oculto');
+    var f = $('filtros'), hay = {};
+    Array.prototype.forEach.call(r.children, function (a) { if (a.dataset.cat) hay[a.dataset.cat] = 1; });
+    Array.prototype.forEach.call(f.querySelectorAll('button'), function (b) {
+      if (b.dataset.cat && !hay[b.dataset.cat]) b.classList.add('oculto');
+    });
+    if (Object.keys(hay).length > 1) f.classList.remove('oculto');
+    var inicial = decodeURIComponent((location.hash || '').slice(1)).toLowerCase();
+    f.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (b) filtrar(b.dataset.cat);
+    });
+    function filtrar(cat) {
+      Array.prototype.forEach.call(f.querySelectorAll('button'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.cat === cat)); });
+      Array.prototype.forEach.call(r.children, function (a) { a.classList.toggle('oculto', !!cat && a.dataset.cat !== cat); });
+      try { history.replaceState(null, '', cat ? '#' + cat.toLowerCase() : location.pathname + location.search); } catch (err) {}
+    }
+    ['Manos', 'Pies', 'Pestañas'].forEach(function (c) { if (inicial === c.toLowerCase() && hay[c]) filtrar(c); });
   }
   setTimeout(function () { mostrar(null); }, 9000);
   fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit', body: JSON.stringify({ fn: 'galeria', args: [] }) })
