@@ -97,6 +97,10 @@ footer .datos b{color:var(--ink);font-weight:500}
 .fotos a{position:relative;display:block;aspect-ratio:4/5;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--card);scroll-snap-align:start}
 .fotos img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
 .fotos a:hover img{transform:scale(1.04)}
+.fotos .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.fotos .play span{width:44px;height:44px;border-radius:50%;background:rgba(13,4,7,.55);border:1px solid rgba(243,220,149,.85);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.fotos .play svg{width:18px;height:18px;fill:#f3dc95;margin-left:3px}
+.fotos .etq{position:absolute;left:6px;bottom:6px;padding:3px 8px;border-radius:999px;background:rgba(13,4,7,.7);color:#f3dc95;font:600 11px var(--body);letter-spacing:.3px;pointer-events:none}
 .fotos .mas{display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;color:var(--gold);font:600 14px var(--body);text-decoration:none;background:var(--card)}
 @media (prefers-reduced-motion:reduce){.fotos img{transition:none}}
 @media (prefers-reduced-motion:reduce){.btn{transition:none}}
@@ -237,7 +241,14 @@ footer .datos b{color:var(--ink);font-weight:500}
             a.setAttribute('aria-label', m.txt ? 'Ver en Instagram: ' + m.txt : 'Ver en Instagram');
             var im = new Image(); im.src = m.img; im.alt = m.txt || ('Trabajo de ' + cat); im.loading = 'lazy'; im.decoding = 'async'; im.referrerPolicy = 'no-referrer';
             im.onerror = function () { a.remove(); };
-            a.appendChild(im); f.appendChild(a);
+            a.appendChild(im);
+            if (m.tipo === 'VIDEO') {
+              a.setAttribute('aria-label', 'Ver video en Instagram' + (m.txt ? ': ' + m.txt : ''));
+              var pl = el('div', 'play'), ci = el('span');
+              ci.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+              pl.appendChild(ci); a.appendChild(pl); a.appendChild(el('span', 'etq', '▶ Ver video'));
+            } else if (m.tipo === 'CAROUSEL_ALBUM') a.appendChild(el('span', 'etq', 'Ver más fotos'));
+            f.appendChild(a);
           });
           var mas = el('a', 'mas', 'Ver más trabajos de ' + cat.toLowerCase() + ' →'); mas.href = '/galeria#' + cat.toLowerCase();
           f.appendChild(mas);
