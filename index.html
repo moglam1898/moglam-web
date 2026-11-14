@@ -8,7 +8,7 @@
 <meta property="og:title" content="Mo' Glam · Agenda tu cita en línea">
 <meta property="og:description" content="Uñas, pedicure y pestañas en Montecarlo, Mérida.">
 <meta property="og:image" content="https://moglam.com.mx/logo.jpg">
-<meta name="theme-color" content="#0d0407">
+<meta name="theme-color" content="#F7E4E6">
 <link rel="icon" href="/logo.jpg">
 <link rel="apple-touch-icon" href="/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,11 +16,11 @@
 <link rel="stylesheet" href="/estilo.css">
 <style>
 .hero{position:relative;overflow:hidden;border-radius:24px;padding:40px 24px 34px;text-align:center;
-  background:radial-gradient(120% 90% at 50% 0%,#2a1712 0%,#160b0f 55%,#0d0407 100%);
-  border:1px solid #5a4535;display:flex;flex-direction:column;align-items:center;gap:14px}
+  background:radial-gradient(120% 90% at 50% 0%,#FFF6F7 0%,#FBF1F2 55%,#F7E4E6 100%);
+  border:1px solid #C9A87A;display:flex;flex-direction:column;align-items:center;gap:14px}
 .hero::before{content:"";position:absolute;inset:0;border-radius:24px;padding:1px;background:var(--oro);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.55;pointer-events:none}
-.hero p{margin:0;max-width:40ch;color:#d9cbbb;font-size:17px}
+.hero p{margin:0;max-width:40ch;color:#4E3238;font-size:17px}
 .hero .cta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px}
 .hero .btn.fill{min-height:54px;padding:0 30px;font-size:17px}
 .pasos{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin-top:6px;color:var(--muted);font-size:13.5px}
@@ -28,7 +28,7 @@
 .info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .info a,.info div{display:flex;flex-direction:column;gap:4px;padding:16px;border-radius:16px;background:var(--card);border:1px solid var(--line);text-decoration:none;color:var(--ink)}
 .info b{font:600 12px var(--body);letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
-.info span{font-size:15px;color:#d9cbbb}
+.info span{font-size:15px;color:#4E3238}
 .secciones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .sec{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink)}
 .sec p{margin:0;color:var(--muted);font-size:15px}
@@ -71,7 +71,7 @@
   </section>
 
   <section class="secciones" aria-label="Más de Mo' Glam">
-    <a class="card sec velas" href="/velas" style="grid-column:1/-1;border-color:#5a4535">
+    <a class="card sec velas" href="/velas" style="grid-column:1/-1;border-color:#C9A87A">
       <span class="pill" style="background:var(--oro);color:var(--gold-ink);border-color:transparent">Temporada navideña</span>
       <h3>Velas de Navidad</h3>
       <p>Velas decorativas hechas a mano, con empaque para regalo. Precio de mayoreo desde 10 piezas.</p>
@@ -129,7 +129,7 @@ fetch("https://script.google.com/macros/s/AKfycbyOj2Dwt9iSgLBEh7tc0ou-jjd3Xd24gu
     if (!(j && j.ok && j.data && j.data.activa)) return;
     var p = document.getElementById('pillTienda'); p.textContent = 'Nuevo';
     p.style.background = 'var(--oro)'; p.style.color = 'var(--gold-ink)'; p.style.borderColor = 'transparent';
-    document.getElementById('cardTienda').style.borderColor = '#5a4535';
+    document.getElementById('cardTienda').style.borderColor = '#C9A87A';
     document.getElementById('txtTienda').textContent = 'Exfoliantes, mascarillas, body butter y sales para consentir tu piel en casa. Entrega en Mérida.';
   }).catch(function () {});
 fetch("https://script.google.com/macros/s/AKfycbyOj2Dwt9iSgLBEh7tc0ou-jjd3Xd24gurcXprvk64Iy-sLNKv1t5maGV9YVLvRtbUmBQ/exec", { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit', body: JSON.stringify({ fn: 'galeria', args: [] }) })
@@ -137,7 +137,7 @@ fetch("https://script.google.com/macros/s/AKfycbyOj2Dwt9iSgLBEh7tc0ou-jjd3Xd24gu
     if (!(j && j.ok && j.data && j.data.conectada && j.data.items && j.data.items.length)) return;
     var p = document.getElementById('pillGal'); p.textContent = 'Nuevo';
     p.style.background = 'var(--oro)'; p.style.color = 'var(--gold-ink)'; p.style.borderColor = 'transparent';
-    document.getElementById('cardGal').style.borderColor = '#5a4535';
+    document.getElementById('cardGal').style.borderColor = '#C9A87A';
     document.getElementById('txtGal').textContent = 'Mira nuestros trabajos más recientes de uñas, pies y pestañas para inspirarte.';
   }).catch(function () {});
 </script>
