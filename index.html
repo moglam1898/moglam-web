@@ -39,6 +39,9 @@
 .redes a:hover{border-color:var(--gold)}
 .redes svg{width:20px;height:20px;flex:none;stroke:var(--gold);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media (max-width:560px){.info{grid-template-columns:1fr}.secciones{grid-template-columns:1fr}.hero{padding:32px 18px 28px}}
+.mapa{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}.mapa h2,.mapa p{margin:0}.mapa p{color:var(--muted)}
+.mapa-caja{width:100%;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--card);aspect-ratio:16/10}.mapa-caja iframe{width:100%;height:100%;border:0;display:block}
+@media (max-width:560px){.mapa-caja{aspect-ratio:4/3.4}}
 </style>
 </head>
 <body>
@@ -71,6 +74,13 @@
   </section>
 
   <div id="resenas"></div>
+
+  <section class="mapa" aria-labelledby="t-mapa">
+    <h2 id="t-mapa">Cómo llegar</h2>
+    <p>Calle 23 #239, Montecarlo, Mérida</p>
+    <div class="mapa-caja"><iframe src="https://maps.google.com/maps?q=Mo'%20Glam%2C%20Calle%2023%20239%2C%20Montecarlo%2C%20M%C3%A9rida%2C%20Yucat%C3%A1n&amp;z=16&amp;hl=es&amp;output=embed" title="Mapa de Mo' Glam en Montecarlo, Mérida" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+    <a class="btn fill" href="https://www.google.com/maps/search/?api=1&amp;query=Mo%27+Glam+Calle+23+239+Montecarlo+M%C3%A9rida" target="_blank" rel="noopener">Abrir en Google Maps</a>
+  </section>
 
   <section class="secciones" aria-label="Más de Mo' Glam">
     <a class="card sec velas" href="/velas" style="grid-column:1/-1;border-color:#C9A87A">
